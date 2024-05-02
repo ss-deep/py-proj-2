@@ -1,0 +1,4 @@
+size,name,price,flavor,frosting,sprinkles,filling
+Mini,Cookies and Cream,1.99,Chocolate,Oreo,"['red', 'blue', 'green']",
+Regular,Triple Chocolate,2.99,Chocolate,Chocolate,"['white', 'golden']",Chocolate
+large,Strawberry,3.99,Strawberry,Vanilla,"['white', 'pink']",Vanilla
