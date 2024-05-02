@@ -1,4 +1,22 @@
 from abc import ABC, abstractmethod
+import csv
+from pprint import pprint
+
+def read_csv(file):
+    with open(file) as csvfile:
+        reader=csv.DictReader(csvfile)
+
+        for row in reader:
+            pprint(row)
+
+read_csv('starter/sample.csv')
+
+
+def write_new_csv(file, cupcakes):
+    with open(file, "w", newline="\n") as csvfile:
+        fieldnames = ["size", "name", "price", "flavor", "frosting", "sprinkles", "filling"]
+        writer = csv.DictWriter(csvfile, fieldnames=fieldnames)
+
 
 class Cupcake(ABC):
 
@@ -18,8 +36,8 @@ class Cupcake(ABC):
         return self.sprinkles
     
     @abstractmethod 
-    def calculate_price(self,quantity):
-        return quantity*self.price
+    def calculate_price(self):
+        pass
 
 class Mini(Cupcake):
     size="Mini"
@@ -30,7 +48,10 @@ class Mini(Cupcake):
         self.flavor=flavor
         self.frosting=frosting
 
-my_cupcake=Cupcake('Cookies and Cream',2.99,'Chocolate','Oreo',['White'],'Vanilla')
+    def calculate_price(self,quantity):
+        return quantity*self.price
+
+# my_cupcake=Cupcake('Cookies and Cream',2.99,'Chocolate','Oreo',['White'],'Vanilla')
 
 # my_cupcake.frosting = "Chocolate"
 # my_cupcake.filling = "Chocolate"
