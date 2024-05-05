@@ -110,6 +110,11 @@ def write_new_file(file):
         writer=csv.DictWriter(csvfile,fieldnames=fieldnames)
         writer.writeheader()
 
+def get_cupcakes(file):
+    with open(file,'r') as csvfile:
+        reader=csv.DictReader(csvfile)
+        cupcakeslist=list(reader)
+        return cupcakeslist
 
 write_new_file('new_sample.csv')
 add_cupcake('new_sample.csv',[minicake,regularcake,largecake])
