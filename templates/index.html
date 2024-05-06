@@ -19,9 +19,9 @@
                 <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
                   <li><a class="btn mx-3" href="{{ url_for('all_cupcake',type='all')}}">View All cupcakes</a></li>
                 </ul>
-                <form class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3" method="post">
+                <form class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3 d-flex" method="post" action="{{ url_for('acive_order')}}">
                   <input type="search" class="form-control form-control-dark" placeholder="Search Cupcake..." name="search">
-                  <a type="button" class="btn me-2" href="{{ url_for('acive_order')}}">Search</a>
+                  <button type="submit" class="btn me-2">Search</button>
                 </form>
                 <div class="text-end">
                   <a class="btn" href="{{ url_for('all_cupcake',type='cart')}}">My Cart</a>
