@@ -11,7 +11,11 @@
                     <p>Flavor : {{cupcake["flavor"]}}</p>
                     <p>Filling : {{cupcake["filling"]}}</p>
                     <p>Frosting : {{cupcake["frosting"]}}</p>
+                    {% if type=="all" %}
                     <a  class="btn btn-primary" href="{{ url_for('add_to_cart', name=cupcake['name']) }}">Add to cart</a>
+                    {% else %}
+                    <a  class="btn btn-primary" href="{{ url_for('all_cupcake',type='all')}}">Add More..</a>
+                    {% endif %}
                 </div>
             </div>
         {%endfor%}

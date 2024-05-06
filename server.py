@@ -1,4 +1,4 @@
-from flask import Flask,render_template
+from flask import Flask,render_template, request
 from cupcakes import get_cupcakes, find_cupcake, add_order
 
 app=Flask(__name__)
@@ -13,25 +13,23 @@ def single_cupcake():
 
 @app.route('/allcupcake/<type>')
 def all_cupcake(type):
-    # print(type)
     if type=='all':
         cupcakes=get_cupcakes("cupcakes.csv")
+        return render_template('all-cupcake.html',cupcakes=cupcakes,type="all")
     elif type=='cart':
         cupcakes=get_cupcakes("order.csv")
-    # print(cupcakes)
-    return render_template('all-cupcake.html',cupcakes=cupcakes)
+        return render_template('all-cupcake.html',cupcakes=cupcakes,type="cart")
+    
 
 @app.route('/add/<name>')
 def add_to_cart(name):
     cupcakes=add_order('order.csv',name)
-    # print(cupcakes)
-    return render_template('order.html',cupcakes=cupcakes)
-    
+    return render_template('order.html',cupcakes=cupcakes)  
 
-# @app.route('/order/<name>')
-# def acive_order(name):
-#     return render_template('order.html',cupcake=find_cupcake('order.csv',name))
-
+@app.route('/order',methods=['POST'])
+def acive_order(name):
+    name = request.form["search"]
+    return render_template('order.html',cupcake=find_cupcake('order.csv',name))
 
 if __name__=="__main__":
     app.env="development"
