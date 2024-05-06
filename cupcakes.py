@@ -92,6 +92,18 @@ def read_csv(file):
 
 # read_csv('starter/sample.csv')
 
+def write_new_file(file):
+    with open(file,'w', newline="\n") as csvfile:
+        fieldnames = ["size", "name", "price", "flavor", "frosting", "sprinkles", "filling"]
+        writer=csv.DictWriter(csvfile,fieldnames=fieldnames)
+        writer.writeheader()
+
+def get_cupcakes(file):
+    with open(file,'r') as csvfile:
+        reader=csv.DictReader(csvfile)
+        cupcakeslist=list(reader)
+        return cupcakeslist
+    
 def add_cupcake(file, cupcakes):
     with open(file,'a', newline="\n") as csvfile:
         fieldnames = ["size", "name", "price", "flavor", "frosting", "sprinkles", "filling"]
@@ -104,17 +116,20 @@ def add_cupcake(file, cupcakes):
                 writer.writerow({"size":cupcake.size,"name":cupcake.name, "price":cupcake.price, "flavor":cupcake.flavor, "frosting":cupcake.frosting, "sprinkles":cupcake.sprinkles})
     print(f"Data has been added to the {file}")
 
-def write_new_file(file):
-    with open(file,'w', newline="\n") as csvfile:
+def find_cupcake(file,name):
+    for cupcake in get_cupcakes(file):
+        if cupcake["name"]==name:
+            return cupcake
+    return None
+
+def add_order(file,cupcake_name):
+    cupcake=find_cupcake("cupcakes.csv",cupcake_name)
+    with open(file,'a',newline="\n") as csvfile:
         fieldnames = ["size", "name", "price", "flavor", "frosting", "sprinkles", "filling"]
         writer=csv.DictWriter(csvfile,fieldnames=fieldnames)
-        writer.writeheader()
+        writer.writerow(cupcake)
+    
+    return get_cupcakes("order.csv")
 
-def get_cupcakes(file):
-    with open(file,'r') as csvfile:
-        reader=csv.DictReader(csvfile)
-        cupcakeslist=list(reader)
-        return cupcakeslist
-
-write_new_file('new_sample.csv')
-add_cupcake('new_sample.csv',[minicake,regularcake,largecake])
+# write_new_file('new_sample.csv')
+# add_cupcake('new_sample.csv',[minicake,regularcake,largecake])

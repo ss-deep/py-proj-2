@@ -1,8 +1,20 @@
+body{
+    color: rgb(74, 0, 78);
+}
+
 .cupcake{
-    background-color: rgb(255, 232, 243);
+    min-height: 80vh;
+    background-color: rgba(254, 239, 246, 0.603);
     text-align: center;
+    border-radius: 20px;
+    border:1px solid rgba(98, 4, 103, 0.413);
 }
 header span{
     color: rgb(98, 4, 103);
     font-weight: 600;
+}
+.cupcake-card{
+    height: 10%;
+    border:1.5px solid rgba(98, 4, 103, 0.352);
+    border-radius: 10px;
 }
